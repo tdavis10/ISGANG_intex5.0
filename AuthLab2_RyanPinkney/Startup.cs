@@ -17,6 +17,7 @@ using Microsoft.JSInterop;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.Extensions.Primitives;
 using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace AuthLab2_RyanPinkney
 {
@@ -40,8 +41,8 @@ namespace AuthLab2_RyanPinkney
             services.AddControllersWithViews();
 
 
-            // connect to database
-            services.AddDbContext<AccidentDbContext>(options =>
+                // connect to database
+                services.AddDbContext<AccidentDbContext>(options =>
             {
                 options.UseMySql(Configuration["connectionString:RDSConnection"]); // Change to RDSConnection for RDS
                 // Change to CrashDbConnection for localhost
@@ -61,9 +62,9 @@ namespace AuthLab2_RyanPinkney
                 options.Password.RequiredUniqueChars = 1;
             });
 
-            services.AddSingleton<InferenceSession>(
-                  new InferenceSession("wwwroot/crash_final2.onnx")
-                );
+            //services.AddSingleton<InferenceSession>(
+            //      new InferenceSession("wwwroot/crash_final2.onnx")
+            //    );
 
 
 
@@ -98,6 +99,8 @@ namespace AuthLab2_RyanPinkney
 
 
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -219,5 +222,6 @@ namespace AuthLab2_RyanPinkney
 
             return _next(context);
         }
+
     }
 }
