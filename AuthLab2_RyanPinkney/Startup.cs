@@ -17,11 +17,11 @@ using Microsoft.JSInterop;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.Extensions.Primitives;
 using Microsoft.AspNetCore.Http;
-using System.IO;
-using Amazon.SecretsManager;
-using Amazon;
-using Amazon.SecretsManager.Model;
-using Amazon.Runtime;
+//using Amazon.SecretsManager.Model;
+//using Amazon.SecretsManager;
+//using Amazon;
+//using Amazon.Runtime;
+//using System.IO;
 
 namespace AuthLab2_RyanPinkney
 {
@@ -179,11 +179,11 @@ namespace AuthLab2_RyanPinkney
                 options.Preload = true;
             });
 
-            services.AddHttpsRedirection(options =>
-            {
-                options.RedirectStatusCode = StatusCodes.Status301MovedPermanently;
-                options.HttpsPort = 443;
-            });
+            //services.AddHttpsRedirection(options =>
+            //{
+            //    options.RedirectStatusCode = StatusCodes.Status301MovedPermanently;
+            //    options.HttpsPort = 443;
+            //});
 
 
         }
@@ -195,15 +195,15 @@ namespace AuthLab2_RyanPinkney
         {
             if (!env.IsDevelopment())
             {
-                // HSTS should only be enabled on production, not on localhost
-                app.UseHsts();
+                //// HSTS should only be enabled on production, not on localhost
+                //app.UseHsts();
             }
 
             // Add other security headers
             app.UseMiddleware<SecurityHeadersMiddleware>();
 
             // Redirect http to https
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
