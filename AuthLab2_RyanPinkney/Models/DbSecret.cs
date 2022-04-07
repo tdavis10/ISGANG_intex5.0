@@ -3,7 +3,7 @@ namespace AuthLab2_RyanPinkney.Models
 {
     public class DbSecret
     {
-        public static string GetRDSConnectionString(string dbname = "sys")
+        public static string GetRDSConnectionString(string dbname = "ebdb")
         {
             if (string.IsNullOrEmpty(dbname)) return null;
             string server = Environment.GetEnvironmentVariable("RDS_SERVER");

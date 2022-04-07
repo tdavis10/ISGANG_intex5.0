@@ -132,7 +132,7 @@ namespace AuthLab2_RyanPinkney
                 // connect to database
                 services.AddDbContext<AccidentDbContext>(options =>
             {
-                options.UseMySql("server=aav5f2jqh834py.cfmwmqiatbw5.us-east-1.rds.amazonaws.com;port=3306;database=ebdb;user=pinkneyr;password=asdf1234"); // Change to RDSConnection for RDS
+                options.UseMySql(DbSecret.GetRDSConnectionString()); // Change to RDSConnection for RDS
                 // Change to CrashDbConnection for localhost
             });
 
