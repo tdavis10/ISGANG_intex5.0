@@ -192,15 +192,15 @@ namespace AuthLab2_RyanPinkney
         {
             if (!env.IsDevelopment())
             {
-                // HSTS should only be enabled on production, not on localhost
-                app.UseHsts();
+                //// HSTS should only be enabled on production, not on localhost
+                //app.UseHsts();
             }
 
             // Add other security headers
             app.UseMiddleware<SecurityHeadersMiddleware>();
 
             // Redirect http to https
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
