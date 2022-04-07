@@ -1,0 +1,235 @@
+﻿@page "/admin/crashes/"
+@page "/admin/crashes/{id:int}"
+@page "/admin/"
+@inherits OwningComponentBase<ICrashRepository>
+@inject IJSRuntime JsRuntime
+
+
+
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    public ICrashRepository repo => Service;
+
+    public IEnumerable<Accident> AccidentData { get; set; }
+
+    public int Filter { get; set; }
+
+    public string City { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        int p = 50;
+
+        AccidentData = await repo.Accidents
+            .Take(p)
+            .OrderByDescending(u => u.crash_id)
+            .ToListAsync();
+    }
+
+    public async Task FilterData(int Filter)
+    {
+        AccidentData = await repo.Accidents
+            .Where(x => x.crash_id == Filter)
+            .OrderByDescending(u => u.crash_id)
+            .ToListAsync();
+    }
+
+    public async Task FilterData2(string City)
+    {
+        AccidentData = await repo.Accidents
+            .Where(x => x.city == City)
+            .OrderByDescending(u => u.crash_id)
+            .ToListAsync();
+    }
+
+    public int skipCount { get; set; }
+
+    public async Task nextPage(int skip, string City)
+    {
+        if (skipCount >= 50)
+        {
+            skipCount += skip;
+        }
+        else
+        {
+            skipCount = skip;
+        }
+
+        AccidentData = await repo.Accidents
+            .Skip(skipCount)
+            .Take(50)
+            .OrderByDescending(u => u.crash_id)
+            .ToListAsync();
+    }
+
+    public async Task previousPage(int skip)
+    {
+
+        if (skipCount >= 50)
+        {
+            skipCount -= skip;
+        }
+        else
+        {
+            skipCount = skip;
+        }
+
+        AccidentData = await repo.Accidents
+            .Skip(skipCount)
+            .Take(50)
+            .OrderByDescending(u => u.crash_id)
+            .ToListAsync();
+    }
+
+    public async Task firstPage(int skip)
+    {
+        skipCount = skip;
+        AccidentData = await repo.Accidents
+            .Skip(skipCount)
+            .Take(50)
+            .OrderByDescending(u => u.crash_id)
+            .ToListAsync();
+    }
+
+    public async Task lastPage(int skip)
+    {
+        skipCount = skip;
+        AccidentData = await repo.Accidents
+            .Skip(skipCount)
+            .Take(50)
+            .OrderByDescending(u => u.crash_id)
+            .ToListAsync();
+    }
+
+    public string GetEditUrl(long id) => $"/admin/crashes/edit/{id}";
+
+    public string GetNextUrl(int id) => $"/admin/crashes/{id}";
+
+    public async Task RemoveAccident(Accident a)
+    {
+        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete the record?");
+        if (confirmed)
+        {
+            repo.DeleteAccident(a);
+            await UpdateData();
+        }
+    }
+
+
+
+
+}
+<div class="row">
+    <div class="col-4">
+        <h5>Search for a record (Crash_ID):</h5>
+        <div class="form-group">
+            <input class="form-control" type="number"
+                   @bind="Filter"
+                   @bind:event="oninput">
+
+        </div>
+        <button class="btn btn-info btn-sm" @onclick="@(x => FilterData(Filter))">Search</button>
+        <button class="btn btn-info btn-sm" @onclick="@(x => UpdateData())">Reset All</button>
+        <br />
+        <br />
+
+        @*<h5>Search by City:</h5>
+        <div class="form-group">
+            <input class="form-control" type="text"
+                   @bind="City"
+                   @bind:event="oninput">
+
+        </div>
+        <button class="btn btn-info btn-sm" @onclick="@(x => FilterData2(City))">Search</button>
+        <button class="btn btn-info btn-sm" @onclick="@(x => UpdateData())">Reset All</button>
+        <br />
+        <br />*@
+
+        <!--Button to create a project-->
+        <NavLink class="btn btn-primary" href="admin/crashes/create">Create New Report</NavLink>
+        <br />
+        <br />
+    </div>
+
+    <div class="col-8">
+        <table class="table table-sm table-striped table-bordered">
+
+
+            <thead>
+                <tr>
+                    <th>Crash_ID</th>
+                    <th>Date</th>
+                    <th>Road</th>
+                    <th>City</th>
+                    <th>County</th>
+                    <th>Severity</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (AccidentData?.Count() > 0)
+                {
+                    @foreach (Accident a in AccidentData)
+                    {
+                        <tr>
+                            <th>@a.crash_id</th>
+                            <th></th>
+                            <th>@a.main_road_name</th>
+                            <th>@a.city</th>
+                            <th>@a.county_name</th>
+                            <th>@a.crash_severity_id</th>
+
+
+                            <!--Edit button-->
+                            <td>
+                                <NavLink class="btn btn-warning btn-sm" href="@GetEditUrl(a.crash_id)">Edit</NavLink>
+                            </td>
+
+                            <!--Delete button-->
+                            <td>
+                                <button class="btn btn-danger btn-sm" @onclick="@(x => RemoveAccident(a))">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 text-right">
+        <button class="btn btn-secondary btn-sm" @onclick="@(x => firstPage(0))">First</button>
+        @if (skipCount >= 50)
+        {
+            <button class="btn btn-secondary m-l-2 btn-sm" @onclick="@(x => previousPage(50))">Previous Page</button>
+        }
+        else
+        {
+            <button class="btn btn-secondary m-l-2 btn-sm disabled" @onclick="@(x => previousPage(50))">Previous Page</button>
+        }
+    </div>
+    <div class="col-6">
+        @if (skipCount >= 249950)
+        {
+            <button class="btn btn-secondary m-l-2 btn-sm disabled" @onclick="@(x => nextPage(50, City))">Next Page</button>
+        }
+        else
+        {
+            <button class="btn btn-secondary m-l-2 btn-sm" @onclick="@(x => nextPage(50, City))">Next Page</button>
+        }
+        <button class="btn btn-secondary btn-sm" @onclick="@(x => lastPage(249950))">Last</button>
+    </div>
+</div>
+<br />
+<br />
+

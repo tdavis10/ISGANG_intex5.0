@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Model";
+}
+
+@model CrashData
+
+<!-- Page Content-->
+<section class="py-5">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center mb-5">
+                    <h1 class="fw-bolder">Project Title</h1>
+                    <p class="lead fw-normal text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab similique, ducimus ut alias sit accusamus illum, asperiores deserunt dolorum quaerat qui! Ab, quisquam explicabo magni dolores unde beatae quam a.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-5">
+
+            <form method="post" asp-controller="Inference" asp-action="Score">
+                <!-- Throw error message if invalid entries made -->
+                <div asp-validation-summary="All"></div>
+
+                <!-- Basic form -->
+                <div class="form-group">
+
+                    <!--Hidden field for the personid-->
+                    <!--<input type="hidden" asp-for="PersonID" />-->
+
+                    <label asp-for="city_OUTSIDE_CITY_LIMITS">Is it outside city limits (1 for true, 0 false)</label>
+                    <input asp-for="city_OUTSIDE_CITY_LIMITS" class="form-control" />
+
+                    <label asp-for="route_15">Is it route 15 (1 for true, 0 false)</label>
+                    <input asp-for="route_15" class="form-control" />
+
+                    <label asp-for="county_name_DAVIS">Is it davis (1 for true, 0 false)</label>
+                    <input asp-for="county_name_DAVIS" class="form-control" />
+
+                    <label asp-for="county_name_SALT_LAKE">Is it Salt Lake (1 for true, 0 false)</label>
+                    <input asp-for="county_name_SALT_LAKE" class="form-control" />
+
+                    <label asp-for="county_name_UTAH">Is it utah (1 for true, 0 false)</label>
+                    <input asp-for="county_name_UTAH" class="form-control" />
+
+                    <label asp-for="single_vehicle_True">Is it a single vehicle (1 for true, 0 false)</label>
+                    <input asp-for="single_vehicle_True" class="form-control" />
+
+                    <label asp-for="teenage_driver_involved_True">Is it a teenage driver (1 for true, 0 false)</label>
+                    <input asp-for="teenage_driver_involved_True" class="form-control" />
+
+                    <label asp-for="night_dark_condition_True">Is it dark (1 for true, 0 false)</label>
+                    <input asp-for="night_dark_condition_True" class="form-control" />
+
+                    <label asp-for="distracted_driving_True">Is it distracted driving (1 for true, 0 false)</label>
+                    <input asp-for="distracted_driving_True" class="form-control" />
+
+                    <label asp-for="older_driver_involved_True">Is it older guy (1 for true, 0 false)</label>
+                    <input asp-for="older_driver_involved_True" class="form-control" />
+
+                    <label asp-for="roadway_departure_True">Is it roadway departure (1 for true, 0 false)</label>
+                    <input asp-for="roadway_departure_True" class="form-control" />
+
+                    <label asp-for="intersection_related_True">Is it intersection realted (1 for true, 0 false)</label>
+                    <input asp-for="intersection_related_True" class="form-control" />
+
+                    <label asp-for="main_road_name_Other">Is not salt lake (1 for true, 0 false)</label>
+                    <input asp-for="main_road_name_Other" class="form-control" />
+
+                </div>
+
+                <!-- submission button -->
+                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+
+            </form>
+
+
+
+        </div>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center mb-5">
+                    <p class="lead fw-normal text-muted">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam deserunt architecto enim eos accusantium fugit recusandae illo iste dignissimos possimus facere ducimus odit voluptatibus exercitationem, ex laudantium illum voluptatum corporis.</p>
+                    <a class="text-decoration-none" href="#!">
+                        View project
+                        <i class="bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

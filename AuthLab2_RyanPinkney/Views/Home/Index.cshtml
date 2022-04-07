@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<script>// The function below will start the confirmation dialog
+    window.onload = function () {
+
+        if (x == 0) {
+            let confirmAction = confirm("This website uses cookies or similar technologies, to enhance your browsing experience and provide personalized recommendations. By continuing to use our website, you agree to our Privacy Policy");
+
+        }
+
+
+    };</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>window.cookieconsent.initialise({
+        "palette": {
+            "popup": {
+                "background": "#252e39"
+            },
+            "button": {
+                "background": "#14a7d0"
+            }
+        },
+        "theme": "classic",
+        "position": "bottom-right",
+        "type": "opt-out",
+        "content": {
+            "href": "http://everydayefficienttransportation.isgang404.net/policy"
+        }
+    });</script>
+
+
+
+<!-- Header-->
+<div class="bg-dark py-5">
+    <div class="container px-5 bg-dark py-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Your Everyday Efficient Transportation Services (YEETS)</h1>
+                    <p class="lead fw-normal text-white-50 mb-4">
+                        With the even increasing rate of fatal car accident rates in Utah, YEETS is at the
+                        forefront of making a change for all Utahns.
+                    </p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Get Started</a>
+                        <a class="btn btn-outline-light btn-lg px-4" asp-controller="Home" asp-action="Summary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="~/img/crash.jpg" alt="..." /></div>
+        </div>
+    </div>
+</div>
+<!-- Informational section-->
+<section class="py-5" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">The alarming reality of our current transportation situation</h2></div>
+            <div class="col-lg-8">
+                <div class="row gx-5 row-cols-1 row-cols-md-2">
+                    <div class="col mb-5 h-100">
+                        <div class="feature rounded-3 mb-3"><img src="~/img/Medkit.png" /></div>
+                        <h2 class="h5">Fatalities</h2>
+                        <p class="mb-0">In 2021, 320 individuals lost their lives in traffic-related incidents, the highest
+                         count since 2002. These people were friends, mothers, fathers, and children.</p>
+                    </div>
+                    <div class="col mb-5 h-100">
+                        <div class="feature rounded-3 mb-3"><img src="~/img/Car.png" /></div>
+                        <h2 class="h5">Injuries</h2>
+                        <p class="mb-0">Accompanying the 320 deaths, 2021 traffic incidents resulted in 26,166 injuries.</p>
+                    </div>
+                    <div class="col mb-5 mb-md-0 h-100">
+                        <div class="feature rounded-3 mb-3"><img src="~/img/Road.png" /></div>
+                        <h2 class="h5">Accidents</h2>
+                        <p class="mb-0">2021 brought 61,247 vehicular accidents to Utah's streets.</p>
+                    </div>
+                    <div class="col h-100">
+                        <div class="feature rounded-3 mb-3"><img src="~/img/man.png" /></div>
+                        <h2 class="h5">Pedestrians involved</h2>
+                        <p class="mb-0">846 pedestrians were involved in traffic accidents in 2021, of which 801 were injured.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonial section-->
+<div class="py-5 bg-light">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 col-xl-7">
+                <div class="text-center">
+                    <div class="fs-4 mb-4 fst-italic">
+                        "Five years from now, we'd find our system very much in a point of failure. We would not
+                        be able to carry the amount of people we need to carry."
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img height="200" width="150" class="rounded-circle me-3" src="~/img/carlos.png" alt="..." />
+                        <div class="fw-bold">
+                            Carlos Braceras
+                            <span class="fw-bold text-primary mx-1">/</span>
+                            P.E, Executive Director
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog preview section-->
+<section class="py-5">
+    <div class="container px-5 my-5">
+        <!-- Team members section-->
+        <section class="py-5 bg-light">
+            <div class="container px-5 my-5">
+                <div class="text-center">
+                    <h2 class="fw-bolder">Our team</h2>
+                    <p class="lead fw-normal text-muted mb-5">Dedicated to our community's safety</p>
+                </div>
+                <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
+                    <div class="col mb-5 mb-5 mb-xl-0">
+                        <div class="text-center">
+                            <img class="img-fluid rounded-circle mb-4 px-4" src="~/img/JacobPoor.jpeg" alt="Ryan Pinkney Photo" style="width:210px; height:230px" />
+                            <h5 class="fw-bolder">Jacob Poor</h5>
+                            <div class="fst-italic text-muted">Founder &amp; CEO</div>
+                        </div>
+                    </div>
+                    <div class="col mb-5 mb-5 mb-xl-0">
+                        <div class="text-center">
+                            <img class="img-fluid rounded-circle mb-4 px-4" src="~/img/pinkney.jpg" alt="Ryan Pinkney Photo" style="width:210px; height:230px" />
+                            <h5 class="fw-bolder">Ryan Pinkney</h5>
+                            <div class="fst-italic text-muted">CFO</div>
+                        </div>
+                    </div>
+                    <div class="col mb-5 mb-5 mb-xl-0">
+                        <div class="text-center">
+                            <img class="img-fluid rounded-circle mb-4 px-4" src="~/img/Kevin.jpg" alt="Kevin Gutierrez Photo" style="width:210px; height:230px" />
+                            <h5 class="fw-bolder">Kevin Gutierrez</h5>
+                            <div class="fst-italic text-muted">Operations Manager</div>
+                        </div>
+                    </div>
+                    <div class="col mb-5 mb-5 mb-xl-0">
+                        <div class="text-center">
+                            <img class="img-fluid rounded-circle mb-4 px-4" src="~/img/Tanner.jpeg" alt="Tanner Davis Photo" style="width:210px; height:230px" />
+                            <h5 class="fw-bolder">Tanner Davis</h5>
+                            <div class="fst-italic text-muted">CTO</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

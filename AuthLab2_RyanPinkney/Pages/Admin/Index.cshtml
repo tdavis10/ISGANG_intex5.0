@@ -1,0 +1,26 @@
+﻿@page "/admin"
+@model AuthLab2_RyanPinkney.Pages.Admin.IndexModel
+
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<!-- input admin html page -->
+<body>
+    <section class="bg-light" id="scroll-target">
+        <div class="row">
+           
+            <div class="col">
+                <div style="margin: 0 auto; width: 100%;">
+                    <component type="typeof(AuthLab2_RyanPinkney.Pages.Admin.Routed)" render-mode="Server" />
+                    <script src="/_framework/blazor.server.js"></script>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

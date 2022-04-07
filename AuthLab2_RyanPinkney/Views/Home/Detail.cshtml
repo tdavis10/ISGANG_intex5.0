@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<!--Link the model for this page-->
+@model Accident
+<!-- Page Title-->
+<h2 class="ml-2">Details:</h2>
+
+
+<h5 class="text-center">Crash ID: @ViewBag.Single.crash_id</h5>
+
+
+<div class="row">
+    <div class="col-3">
+        <!-- displays all details related to an incident when 'details' button is clicked on a record -->
+        <div class="text-center">
+            <p>Date: </p>
+            <p>Route: @ViewBag.Single.route</p>
+            <p>Milepoint: @ViewBag.Single.milepoint</p>
+            <p>Latitude: @ViewBag.Single.lat_utm_y</p>
+            <p>Longitude: @ViewBag.Single.long_utm_x</p>
+            <p>Main Road: @ViewBag.Single.main_road_name</p>
+            <p>City: @ViewBag.Single.city</p>
+            <p>County: @ViewBag.Single.county_name</p>
+            <p>Work Zone: @ViewBag.Single.work_zone_related_True</p>
+            <p>Pedestrians Involved: @ViewBag.Single.pedestrian_involved_True</p>
+            <p>Bicyclist Involved: @ViewBag.Single.bicyclist_involved_True</p>
+            <p>Night Conditions: @ViewBag.Single.night_dark_condition_True</p>
+            <p>Distracted Driving: @ViewBag.Single.distracted_driving_True</p>
+            <p>Drowsy Driving: @ViewBag.Single.drowsy_driving_True</p>
+
+
+        </div>
+
+    </div>
+    <div class="col">
+
+        <div class="text-center">
+            <p>Motorcycle Involved: @ViewBag.Single.motorcycle_involved_True</p>
+            <p>Improper Restraint: @ViewBag.Single.improper_restraint_True</p>
+            <p>Unrestrained: @ViewBag.Single.unrestrained_True</p>
+            <p>DUI: @ViewBag.Single.dui_true</p>
+            <p>Related to an Intersection: @ViewBag.Single.intersection_related_True</p>
+            <p>Wild Animal: @ViewBag.Single.wild_animal_related_True</p>
+            <p>Domestic Animal: @ViewBag.Single.domestic_animal_related_True</p>
+            <p>Rolloever or Overturn: @ViewBag.Single.overturn_rollover_True</p>
+            <p>Commercial Vehicle Involved: @ViewBag.Single.commercial_motor_veh_involved_True</p>
+            <p>Teenage Driver: @ViewBag.Single.teenage_driver_involved_True</p>
+            <p>Older Driver: @ViewBag.Single.older_driver_involved_True</p>
+            <p>Single Vehicle: @ViewBag.Single.single_vehicle_True</p>
+            <p>Roadway Departure: @ViewBag.Single.roadway_departure_True</p>
+
+
+
+        </div>
+
+
+
+    </div>
+
+</div>

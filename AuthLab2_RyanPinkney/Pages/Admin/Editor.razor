@@ -1,0 +1,290 @@
+﻿@page "/admin/crashes/create"
+@page "/admin/crashes/edit/{id:long}"
+@inherits OwningComponentBase<ICrashRepository>
+
+@code {
+
+    [Parameter]
+    public long Id { get; set; }
+
+
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Create" : "Edit";
+
+    public Accident a { get; set; } = new Accident();
+
+    public ICrashRepository repo => Service;
+
+    protected override void OnParametersSet()
+    {
+        if (Id != 0)
+        {
+            a = repo.Accidents.FirstOrDefault(x => x.crash_id == Id);
+        }
+    }
+
+
+    public void SaveRecord()
+    {
+        if (Id == 0)
+        {
+
+            var oSingleTimeMax = repo.Accidents.OrderByDescending(u => u.crash_id).FirstOrDefault();
+
+            a.crash_id = oSingleTimeMax.crash_id + 1;
+
+
+            repo.AddAccident(a);
+        }
+        else
+        {
+            repo.EditAccident(a);
+        }
+
+        NavManager.NavigateTo("/admin", true);
+    }
+
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+
+}
+
+
+<style>
+    div.validation-message {
+        color: rgb(220,53,69);
+        font-weight: 500;
+    }
+</style>
+
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Post</h3>
+
+<EditForm Model="a" OnValidSubmit="SaveRecord">
+
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+
+    @if (a.crash_id != 0)
+    {
+        <div class="form-group">
+            <label>Crash ID</label>
+            <input class="form-control" disabled value="@a.crash_id" />
+        </div>
+    }
+
+
+    <div class="form-group">
+        <label>Route:</label>
+        <ValidationMessage For="@(() => a.route)"></ValidationMessage>
+        <InputText class="form-control" @bind-Value="a.route"></InputText>
+
+    </div>
+
+    <div class="form-group">
+        <label>Mile Point:</label>
+        <ValidationMessage For="@(() => a.milepoint)"></ValidationMessage>
+        <InputNumber class="form-control" @bind-Value="a.milepoint"></InputNumber>
+
+    </div>
+
+    <div class="form-group">
+        <label>Latitude:</label>
+        <ValidationMessage For="@(() => a.lat_utm_y)"></ValidationMessage>
+        <InputNumber class="form-control" @bind-Value="a.lat_utm_y"></InputNumber>
+
+    </div>
+
+    <div class="form-group">
+        <label>Longitude:</label>
+        <ValidationMessage For="@(() => a.long_utm_x)"></ValidationMessage>
+        <InputNumber class="form-control" @bind-Value="a.long_utm_x"></InputNumber>
+
+    </div>
+
+    <div class="form-group">
+        <label>Main Road Name:</label>
+        <ValidationMessage For="@(() => a.main_road_name)"></ValidationMessage>
+        <InputText class="form-control" @bind-Value="a.main_road_name"></InputText>
+
+    </div>
+
+    <div class="form-group">
+        <label>City:</label>
+        <ValidationMessage For="@(() => a.city)"></ValidationMessage>
+        <InputText class="form-control" @bind-Value="a.city"></InputText>
+
+    </div>
+
+    <div class="form-group">
+        <label>County:</label>
+        <ValidationMessage For="@(() => a.county_name)"></ValidationMessage>
+        <InputText class="form-control" @bind-Value="a.county_name"></InputText>
+
+    </div>
+
+    <div class="form-group">
+        <label>Crash Severity:</label>
+        <ValidationMessage For="@(() => a.crash_severity_id)"></ValidationMessage>
+        <InputNumber class="form-control" @bind-Value="a.crash_severity_id"></InputNumber>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Work Zone Related: </label>
+        <ValidationMessage For="@(() => a.work_zone_related_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.work_zone_related_True"></InputCheckbox>
+
+    </div>
+
+    <div class="form-group">
+        <label>Pedestrain Involved: </label>
+        <ValidationMessage For="@(() => a.pedestrian_involved_True)"></ValidationMessage>
+        <InputCheckbox  @bind-Value="a.pedestrian_involved_True"></InputCheckbox>
+
+    </div>
+
+    <div class="form-group">
+        <label>Bicyclist Involved: </label>
+        <ValidationMessage For="@(() => a.bicyclist_involved_True)"></ValidationMessage>
+        <InputCheckbox  @bind-Value="a.bicyclist_involved_True"></InputCheckbox>
+
+    </div>
+
+    <div class="form-group">
+        <label>Motorcycle Involved: </label>
+        <ValidationMessage For="@(() => a.motorcycle_involved_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.motorcycle_involved_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Improper Restraint: </label>
+        <ValidationMessage For="@(() => a.improper_restraint_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.improper_restraint_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Unrestrained: </label>
+        <ValidationMessage For="@(() => a.unrestrained_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.unrestrained_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>DUI: </label>
+        <ValidationMessage For="@(() => a.dui_true)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.dui_true"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Intersection Related: </label>
+        <ValidationMessage For="@(() => a.intersection_related_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.intersection_related_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Wild Animal Related: </label>
+        <ValidationMessage For="@(() => a.wild_animal_related_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.wild_animal_related_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Domestic Animal Related: </label>
+        <ValidationMessage For="@(() => a.domestic_animal_related_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.domestic_animal_related_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Overturn Rollover: </label>
+        <ValidationMessage For="@(() => a.overturn_rollover_True)"></ValidationMessage>
+        <InputCheckbox  @bind-Value="a.overturn_rollover_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Comerical Motorvehicle Involved: </label>
+        <ValidationMessage For="@(() => a.commercial_motor_veh_involved_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.commercial_motor_veh_involved_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Teenage Driver Involved: </label>
+        <ValidationMessage For="@(() => a.teenage_driver_involved_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.teenage_driver_involved_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label> Older Drive Involved: </label>
+        <ValidationMessage For="@(() => a.older_driver_involved_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.older_driver_involved_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Night Condition: </label>
+        <ValidationMessage For="@(() => a.night_dark_condition_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.night_dark_condition_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Single Vehicle: </label>
+        <ValidationMessage For="@(() => a.single_vehicle_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.single_vehicle_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Distracted Driving: </label>
+        <ValidationMessage For="@(() => a.distracted_driving_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.distracted_driving_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Drowsy Driving: </label>
+        <ValidationMessage For="@(() => a.drowsy_driving_True)"></ValidationMessage>
+        <InputCheckbox  @bind-Value="a.drowsy_driving_True"></InputCheckbox>
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Roadway Departure: </label>
+        <ValidationMessage For="@(() => a.roadway_departure_True)"></ValidationMessage>
+        <InputCheckbox @bind-Value="a.roadway_departure_True"></InputCheckbox>
+
+    </div>
+
+
+
+    <button type="submit" class="btn btn-@ThemeColor">Save</button>
+    <NavLink class="btn btn-secondary" href="/admin">Cancel</NavLink>
+
+
+
+
+</EditForm>
+
+

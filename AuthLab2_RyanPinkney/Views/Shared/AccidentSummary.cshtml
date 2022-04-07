@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@model Accident
+<!-- Model needs to be capitalized-->
+<div>
+
+
+    <tr>
+        <th>@Model.crash_id</th>
+        <th></th>
+        <th>@Model.route</th>
+        <th>@Model.main_road_name</th>
+        <th>@Model.city</th>
+        <th>@Model.county_name</th>
+        <th>@Model.crash_severity_id</th>
+        <td><a class="btn btn-success" asp-controller="Home" asp-action="Detail" asp-route-id="@Model.crash_id">Details</a></td>
+    </tr>
+
+
+
+<form method="post" asp-page="/Donate">
+
+    <!--Pass some information to the razor page-->
+    <input type="hidden" asp-for="@Model.crash_id" />
+    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
+</form>
+
+
+</div>

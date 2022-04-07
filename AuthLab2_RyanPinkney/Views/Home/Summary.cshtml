@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Data";
+}
+@model AccidentViewModels
+<!-- Header-->
+<div class="py-5">
+    <div class="container px-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xxl-6">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder mb-3">A look at the daily tragedies on Utah roads</h1>
+                    <p class="lead fw-normal text-muted mb-4">Hearing the occasional news story concerning a car wreck can be unsettling; however, looking at the raw data is deeply shocking</p>
+                    @*<a class="btn btn-primary btn-lg" href="#scroll-target">View Now</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About section one-->
+<section class="py-5 bg-light" id="scroll-target">
+    <div class="row">
+        <div class="col-2">
+            <div style="padding-left:30px;">
+                <vc:city></vc:city>
+            </div>
+        </div>
+        <div class="col-10">
+            <div style="margin: 0 auto; width: 95%;">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Crash_ID</th>
+                            <th>Date</th>
+                            <th>Route</th>
+                            <th>Road</th>
+                            <th>City</th>
+                            <th>County</th>
+                            <th>Severity</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!--Rows-->
+                        @foreach (Accident iCount in Model.Accidents)
+                        {<!-- Model needs to be capitalized-->
+
+                            // Allows us to make a module of html to reuse on multiple pages
+                            <partial name="AccidentSummary" model="iCount" />
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Buttons to go to the next page-->
+    <div class="text-center">
+
+        @if (Model.PageInfo.iCurrentPage > 1)
+        {
+            <a asp-controller="Home" asp-action="SummaryFirst" class="btn btn-secondary m-1">First</a>
+        }
+        @if (Model.PageInfo.iCurrentPage > 10)
+        {
+            <a asp-controller="Home" asp-action="SummaryPrevious" asp-route-id="@Model.PageInfo.iCurrentPage" class="btn btn-secondary m-1">Previous</a>
+        }
+        <div page-blah-model="@Model.PageInfo" page-action="Summary" page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-outline-dark"
+             page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
+        @if (Model.PageInfo.iCurrentPage <= Model.PageInfo.iTotalPages - 10)
+        {
+            <a asp-controller="Home" asp-action="SummaryNext" asp-route-id="@Model.PageInfo.iCurrentPage" class="btn btn-secondary m-1">Next</a>
+            <a asp-controller="Home" asp-action="SummaryLast" class="btn btn-secondary m-1">Last</a>
+        }
+    </div>
+</section>
+
