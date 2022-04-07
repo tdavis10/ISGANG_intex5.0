@@ -80,6 +80,14 @@
     </div>
 
     <div class="form-group">
+        <label>Date:</label>
+        <ValidationMessage For="@(() => a.datetime)"></ValidationMessage>
+        <InputText class="form-control" @bind-Value="a.datetime"></InputText>
+
+    </div>
+
+
+    <div class="form-group">
         <label>Mile Point:</label>
         <ValidationMessage For="@(() => a.milepoint)"></ValidationMessage>
         <InputNumber class="form-control" @bind-Value="a.milepoint"></InputNumber>
@@ -139,14 +147,14 @@
     <div class="form-group">
         <label>Pedestrain Involved: </label>
         <ValidationMessage For="@(() => a.pedestrian_involved_True)"></ValidationMessage>
-        <InputCheckbox  @bind-Value="a.pedestrian_involved_True"></InputCheckbox>
+        <InputCheckbox @bind-Value="a.pedestrian_involved_True"></InputCheckbox>
 
     </div>
 
     <div class="form-group">
         <label>Bicyclist Involved: </label>
         <ValidationMessage For="@(() => a.bicyclist_involved_True)"></ValidationMessage>
-        <InputCheckbox  @bind-Value="a.bicyclist_involved_True"></InputCheckbox>
+        <InputCheckbox @bind-Value="a.bicyclist_involved_True"></InputCheckbox>
 
     </div>
 
@@ -209,7 +217,7 @@
     <div class="form-group">
         <label>Overturn Rollover: </label>
         <ValidationMessage For="@(() => a.overturn_rollover_True)"></ValidationMessage>
-        <InputCheckbox  @bind-Value="a.overturn_rollover_True"></InputCheckbox>
+        <InputCheckbox @bind-Value="a.overturn_rollover_True"></InputCheckbox>
 
     </div>
 
@@ -265,7 +273,7 @@
     <div class="form-group">
         <label>Drowsy Driving: </label>
         <ValidationMessage For="@(() => a.drowsy_driving_True)"></ValidationMessage>
-        <InputCheckbox  @bind-Value="a.drowsy_driving_True"></InputCheckbox>
+        <InputCheckbox @bind-Value="a.drowsy_driving_True"></InputCheckbox>
 
     </div>
 
@@ -280,11 +288,11 @@
 
 
     <button type="submit" class="btn btn-@ThemeColor">Save</button>
-    <NavLink class="btn btn-secondary" href="/admin">Cancel</NavLink>
+    <NavLink class="btn btn-secondary" href="/admin">Cancel</NavLink><br />
 
 
 
 
-</EditForm>
+</EditForm><br /><br /><br />
 
 
