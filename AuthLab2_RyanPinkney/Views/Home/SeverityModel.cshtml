@@ -38,14 +38,14 @@
                         <!-- 1 -->
                         <td>
                             <div class="form-group text-center">
-                                <label asp-for="city_OUTSIDE_CITY_LIMITS">Outside City Limits?</label><br />
-                                <select asp-for="city_OUTSIDE_CITY_LIMITS">
+                                <label asp-for="older_driver_involved_True">Older Driver?</label><br />
+                                <select asp-for="older_driver_involved_True">
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
                                 </select>
-                                <br />
                             </div>
                         </td>
+
                         <!-- 2 -->
                         <td>
                             <div class="form-group text-center">
@@ -56,6 +56,7 @@
                                 </select>
                             </div>
                         </td>
+
                         <!-- 3 -->
                         <td>
                             <div class="form-group text-center">
@@ -69,14 +70,39 @@
                         <!-- 4 -->
                         <td>
                             <div class="form-group text-center">
-                                <label asp-for="county_name_SALT_LAKE">Salt Lake County?</label><br />
-                                <select asp-for="county_name_SALT_LAKE">
+                                <label asp-for="roadway_departure_True">Crash Off the Road?</label><br />
+                                <select asp-for="roadway_departure_True">
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
                                 </select>
                             </div>
                         </td>
                         <!-- 5 -->
+                        <td>
+                            <div class="form-group text-center">
+                                <label asp-for="night_dark_condition_True">Driving at night?</label><br />
+                                <select asp-for="night_dark_condition_True">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <!-- 1 -->
+
+                        <td>
+                            <div class="form-group text-center">
+                                <label asp-for="city_OUTSIDE_CITY_LIMITS">Outside City Limits?</label><br />
+                                <select asp-for="city_OUTSIDE_CITY_LIMITS">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                                <br />
+                            </div>
+                        </td>
+                        <!-- 2 -->
                         <td>
                             <div class="form-group text-center">
                                 <label asp-for="county_name_UTAH">Utah County?</label><br />
@@ -86,33 +112,12 @@
                                 </select>
                             </div>
                         </td>
-                    </tr>
-                    <tr>
-                        <!-- 1 -->
-                        <td>
-                            <div class="form-group text-center">
-                                <label asp-for="teenage_driver_involved_True">Teenage Driver?</label><br />
-                                <select asp-for="teenage_driver_involved_True">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-                        </td>
-                        <!-- 2 -->
-                        <td>
-                            <div class="form-group text-center">
-                                <label asp-for="single_vehicle_True">Single Vehicle involved?</label><br />
-                                <select asp-for="single_vehicle_True">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-                        </td>
+
                         <!-- 3 -->
-                        <td>
+                                                <td>
                             <div class="form-group text-center">
-                                <label asp-for="night_dark_condition_True">Driving at night?</label><br />
-                                <select asp-for="night_dark_condition_True">
+                                <label asp-for="main_road_name_Other">Backroad?</label><br />
+                                <select asp-for="main_road_name_Other">
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
                                 </select>
@@ -129,28 +134,33 @@
                             </div>
                         </td>
                         <!-- 5 -->
-                        <td>
-                            <div class="form-group text-center">
-                                <label asp-for="older_driver_involved_True">Older Driver?</label><br />
-                                <select asp-for="older_driver_involved_True">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-                        </td>
                     </tr>
                     <tr>
                         <!-- 1 -->
+
                         <td>
                             <div class="form-group text-center">
-                                <label asp-for="roadway_departure_True">Crash Off the Road?</label><br />
-                                <select asp-for="roadway_departure_True">
+                                <label asp-for="single_vehicle_True">Single Vehicle involved?</label><br />
+                                <select asp-for="single_vehicle_True">
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
                                 </select>
                             </div>
                         </td>
                         <!-- 2 -->
+
+                        <td>
+                            <div class="form-group text-center">
+                                <label asp-for="county_name_SALT_LAKE">Salt Lake County?</label><br />
+                                <select asp-for="county_name_SALT_LAKE">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </td>
+
+                        <!-- 3 -->
+
                         <td>
                             <div class="form-group text-center">
                                 <label asp-for="intersection_related_True">Crash at Intersection?</label><br />
@@ -160,17 +170,16 @@
                                 </select>
                             </div>
                         </td>
-                        <!-- 3 -->
+                        <!-- 4 -->
                         <td>
                             <div class="form-group text-center">
-                                <label asp-for="main_road_name_Other">Backroad?</label><br />
-                                <select asp-for="main_road_name_Other">
+                                <label asp-for="teenage_driver_involved_True">Teenage Driver?</label><br />
+                                <select asp-for="teenage_driver_involved_True">
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
                                 </select>
                             </div>
                         </td>
-                        <!-- 4 -->
                         <!-- 5 -->
                     </tr>
                 </table>
