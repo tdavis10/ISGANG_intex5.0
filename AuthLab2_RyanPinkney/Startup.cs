@@ -64,6 +64,7 @@ namespace AuthLab2_RyanPinkney
             //    );
 
 
+
             //services.AddAuthentication().AddGoogle(options =>
             //     {
             //         IConfigurationSection googleAuthNSection =
@@ -102,8 +103,10 @@ namespace AuthLab2_RyanPinkney
             {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+
             }
+
+            app.UseHsts();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -111,6 +114,14 @@ namespace AuthLab2_RyanPinkney
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.Use(async (ctx, next) =>
+            {
+                ctx.Response.Headers.Add("Content-Security-Policy",
+                //"default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';");
+                "default-src 'self' https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js http://www.w3.org/2000/svg https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/fonts/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/fonts/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d");
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {
