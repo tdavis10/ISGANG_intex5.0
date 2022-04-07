@@ -114,7 +114,7 @@
                         </td>
 
                         <!-- 3 -->
-                                                <td>
+                        <td>
                             <div class="form-group text-center">
                                 <label asp-for="main_road_name_Other">Backroad?</label><br />
                                 <select asp-for="main_road_name_Other">
@@ -126,6 +126,17 @@
                         <!-- 4 -->
                         <td>
                             <div class="form-group text-center">
+                                <label asp-for="teenage_driver_involved_True">Teenage Driver?</label><br />
+                                <select asp-for="teenage_driver_involved_True">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </td>
+
+                        <!-- 5 -->
+                        <td>
+                            <div class="form-group text-center">
                                 <label asp-for="distracted_driving_True">Distracted Driving?</label><br />
                                 <select asp-for="distracted_driving_True">
                                     <option value="1">Yes</option>
@@ -133,7 +144,6 @@
                                 </select>
                             </div>
                         </td>
-                        <!-- 5 -->
                     </tr>
                     <tr>
                         <!-- 1 -->
@@ -171,15 +181,6 @@
                             </div>
                         </td>
                         <!-- 4 -->
-                        <td>
-                            <div class="form-group text-center">
-                                <label asp-for="teenage_driver_involved_True">Teenage Driver?</label><br />
-                                <select asp-for="teenage_driver_involved_True">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-                        </td>
                         <!-- 5 -->
                     </tr>
                 </table>
