@@ -17,26 +17,23 @@ using Microsoft.JSInterop;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.Extensions.Primitives;
 using Microsoft.AspNetCore.Http;
-//using Amazon.SecretsManager.Model;
+//using System.IO;
 //using Amazon.SecretsManager;
 //using Amazon;
+//using Amazon.SecretsManager.Model;
 //using Amazon.Runtime;
-//using System.IO;
 
 namespace AuthLab2_RyanPinkney
 {
     public class Startup
     {
-        // The AWS Secret manger works locally
         //public static string GetSecret()
         //{
-        //    string secretName = "arn:aws:secretsmanager:us-east-1:100931026615:secret:connectionstringsecret-by6QkU";
-        //    string region = "us-east-1";
+        //    string secretName = "arn:aws:secretsmanager:us-west-1:100931026615:secret:thisisthecaliforniaconnectionstring-CjXOk8";
+        //    string region = "us-west-1";
         //    string secret = "";
-
         //    MemoryStream memoryStream = new MemoryStream();
-
-        //    IAmazonSecretsManager client = new AmazonSecretsManagerClient(new StoredProfileAWSCredentials());
+        //    IAmazonSecretsManager client = new AmazonSecretsManagerClient(RegionEndpoint.GetBySystemName(region));
 
         //    GetSecretValueRequest request = new GetSecretValueRequest();
         //    request.SecretId = secretName;
