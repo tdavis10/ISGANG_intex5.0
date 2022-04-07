@@ -36,7 +36,26 @@
             <h3>Here is the predicted crash severity</h3>
             <h1>Score: @Model.PredictedValue</h1>
 
-
+            @if (Model.PredictedValue == "1")
+            {
+                <h2>No Injury</h2>
+            }
+            @if (Model.PredictedValue == "2")
+            {
+                <h2>Possible Injury</h2>
+            }
+            @if (Model.PredictedValue == "3")
+            {
+                <h2>Suspected Minor Injury</h2>
+            }
+            @if (Model.PredictedValue == "4")
+            {
+                <h2>Suspected Serious Injury</h2>
+            }
+            @if (Model.PredictedValue == "5")
+            {
+                <h2>Fatal</h2>
+            }
         </div>
 
     </div>
