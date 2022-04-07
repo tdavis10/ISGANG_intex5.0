@@ -11,7 +11,7 @@ namespace AuthLab2_RyanPinkney.Models
         public int crash_id { get; set; }
 
 
-        //public string crash_datetime { get; set; }
+        public string datetime { get; set; }
 
         public string route { get; set; }
 
