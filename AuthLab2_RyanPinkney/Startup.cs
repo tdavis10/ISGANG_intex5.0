@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 using AuthLab2_RyanPinkney.Models;
 using Microsoft.JSInterop;
 using Microsoft.ML.OnnxRuntime;
+using Microsoft.Extensions.Primitives;
+using Microsoft.AspNetCore.Http;
 
 namespace AuthLab2_RyanPinkney
 {
@@ -83,9 +85,15 @@ namespace AuthLab2_RyanPinkney
 
             services.AddHsts(options =>
             {
-                options.Preload = true;
+                options.MaxAge = TimeSpan.FromDays(90);
                 options.IncludeSubDomains = true;
-                options.MaxAge = TimeSpan.FromDays(365);
+                options.Preload = true;
+            });
+
+            services.AddHttpsRedirection(options =>
+            {
+                options.RedirectStatusCode = StatusCodes.Status301MovedPermanently;
+                options.HttpsPort = 443;
             });
 
 
@@ -94,19 +102,16 @@ namespace AuthLab2_RyanPinkney
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (!env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-
+                // HSTS should only be enabled on production, not on localhost
+                app.UseHsts();
             }
 
-            app.UseHsts();
+            // Add other security headers
+            app.UseMiddleware<SecurityHeadersMiddleware>();
+
+            // Redirect http to https
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -159,6 +164,60 @@ namespace AuthLab2_RyanPinkney
                 endpoints.MapRazorPages();
             });
 
+        }
+    }
+
+    public sealed class SecurityHeadersMiddleware
+    {
+        private readonly RequestDelegate _next;
+
+        public SecurityHeadersMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
+
+        public Task Invoke(HttpContext context)
+        {
+            context.Response.Headers.Add("strict-transport-security", new StringValues("max-age=31536000"));
+
+            context.Response.Headers.Add("referrer-policy", new StringValues("strict-origin-when-cross-origin"));
+
+            context.Response.Headers.Add("x-content-type-options", new StringValues("nosniff"));
+
+            context.Response.Headers.Add("x-frame-options", new StringValues("DENY"));
+
+            context.Response.Headers.Add("X-Permitted-Cross-Domain-Policies", new StringValues("none"));
+
+            context.Response.Headers.Add("x-xss-protection", new StringValues("1; mode=block"));
+
+            context.Response.Headers.Add("Expect-CT", new StringValues("max-age=0, enforce, report-uri=\"https://example.report-uri.com/r/d/ct/enforce\""));
+
+            context.Response.Headers.Add("Feature-Policy", new StringValues(
+                "accelerometer 'none';" +
+                "ambient-light-sensor 'none';" +
+                "autoplay 'none';" +
+                "battery 'none';" +
+                "camera 'none';" +
+                "display-capture 'none';" +
+                "document-domain 'none';" +
+                "encrypted-media 'none';" +
+                "execution-while-not-rendered 'none';" +
+                "execution-while-out-of-viewport 'none';" +
+                "gyroscope 'none';" +
+                "magnetometer 'none';" +
+                "microphone 'none';" +
+                "midi 'none';" +
+                "navigation-override 'none';" +
+                "payment 'none';" +
+                "picture-in-picture 'none';" +
+                "publickey-credentials-get 'none';" +
+                "sync-xhr 'none';" +
+                "usb 'none';" +
+                "wake-lock 'none';" +
+                "xr-spatial-tracking 'none';"
+                ));
+
+            return _next(context);
         }
     }
 }
