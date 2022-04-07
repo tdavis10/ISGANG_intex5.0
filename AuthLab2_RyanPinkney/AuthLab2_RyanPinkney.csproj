@@ -20,6 +20,7 @@
     <None Remove="AWSSDK.Core" />
     <None Remove="BlazorPagination" />
     <None Remove="Microsoft.ML.OnnxRuntime" />
+    <None Remove="AWSSDK.SecretsManager" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\crash_final2.onnx" />
@@ -44,6 +45,7 @@
     <PackageReference Include="AWSSDK.Core" Version="3.7.10.3" />
     <PackageReference Include="BlazorPagination" Version="0.2.16" />
     <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.11.0" />
+    <PackageReference Include="AWSSDK.SecretsManager" Version="3.7.1.71" />
   </ItemGroup>
 
   <ItemGroup>
