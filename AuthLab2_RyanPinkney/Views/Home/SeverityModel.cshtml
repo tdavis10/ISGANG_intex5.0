@@ -27,11 +27,118 @@
                     <!--Hidden field for the personid-->
                     <!--<input type="hidden" asp-for="PersonID" />-->
 
-                    <label asp-for="city_OUTSIDE_CITY_LIMITS">Is it outside city limits (1 for true, 0 false)</label>
-                    <input asp-for="city_OUTSIDE_CITY_LIMITS" class="form-control" />
+                    <p>Please Select the Criteria:</p>
+                    @*<input asp-for="city_OUTSIDE_CITY_LIMITS" class="form-control" type="checkbox" value="1" id="city_OUTSIDE_CITY_LIMITS" name="city_OUTSIDE_CITY_LIMITS" />
+        <label asp-for="city_OUTSIDE_CITY_LIMITS" for="city_OUTSIDE_CITY_LIMITS">Is it outside city limits?</label>*@
 
-                    <label asp-for="route_15">Is it route 15 (1 for true, 0 false)</label>
-                    <input asp-for="route_15" class="form-control" />
+                    <br />
+                    <label asp-for="city_OUTSIDE_CITY_LIMITS"></label>
+                    <select asp-for="city_OUTSIDE_CITY_LIMITS">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="county_name_DAVIS"></label>
+                    <select asp-for="county_name_DAVIS">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="route_15"></label>
+                    <select asp-for="route_15">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="county_name_SALT_LAKE"></label>
+                    <select asp-for="county_name_SALT_LAKE">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="county_name_UTAH"></label>
+                    <select asp-for="county_name_UTAH">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="single_vehicle_True"></label>
+                    <select asp-for="single_vehicle_True">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="teenage_driver_involved_True"></label>
+                    <select asp-for="teenage_driver_involved_True">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="night_dark_condition_True"></label>
+                    <select asp-for="night_dark_condition_True">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="distracted_driving_True"></label>
+                    <select asp-for="distracted_driving_True">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="older_driver_involved_True"></label>
+                    <select asp-for="older_driver_involved_True">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="roadway_departure_True"></label>
+                    <select asp-for="roadway_departure_True">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="intersection_related_True"></label>
+                    <select asp-for="intersection_related_True">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label asp-for="main_road_name_Other"></label>
+                    <select asp-for="main_road_name_Other">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <br />
+
+
+                    @*<label asp-for="route_15">Is it route 15 (1 for true, 0 false)</label>
+                    <input type="radio" class="form-control" name="yes_no" value="1">Yes
+                    <input type="radio" class="form-control" name="yes_no" value="0">No
 
                     <label asp-for="county_name_DAVIS">Is it davis (1 for true, 0 false)</label>
                     <input asp-for="county_name_DAVIS" class="form-control" />
@@ -64,7 +171,7 @@
                     <input asp-for="intersection_related_True" class="form-control" />
 
                     <label asp-for="main_road_name_Other">Is not salt lake (1 for true, 0 false)</label>
-                    <input asp-for="main_road_name_Other" class="form-control" />
+                    <input asp-for="main_road_name_Other" class="form-control" />*@
 
                 </div>
 
