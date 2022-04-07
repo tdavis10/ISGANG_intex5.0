@@ -21,89 +21,90 @@ using System.IO;
 using Amazon.SecretsManager;
 using Amazon;
 using Amazon.SecretsManager.Model;
+using Amazon.Runtime;
 
 namespace AuthLab2_RyanPinkney
 {
     public class Startup
     {
-        //public static string GetSecret()
-        //{
-        //    string secretName = "arn:aws:secretsmanager:us-east-1:100931026615:secret:connectionstringsecret-by6QkU";
-        //    string region = "us-east-1";
-        //    string secret = "";
+        public static string GetSecret()
+        {
+            string secretName = "arn:aws:secretsmanager:us-east-1:100931026615:secret:connectionstringsecret-by6QkU";
+            string region = "us-east-1";
+            string secret = "";
 
-        //    MemoryStream memoryStream = new MemoryStream();
+            MemoryStream memoryStream = new MemoryStream();
 
-        //    IAmazonSecretsManager client = new AmazonSecretsManagerClient(RegionEndpoint.GetBySystemName(region));
+            IAmazonSecretsManager client = new AmazonSecretsManagerClient(new StoredProfileAWSCredentials());
 
-        //    GetSecretValueRequest request = new GetSecretValueRequest();
-        //    request.SecretId = secretName;
-        //    request.VersionStage = "AWSCURRENT"; // VersionStage defaults to AWSCURRENT if unspecified.
+            GetSecretValueRequest request = new GetSecretValueRequest();
+            request.SecretId = secretName;
+            request.VersionStage = "AWSCURRENT"; // VersionStage defaults to AWSCURRENT if unspecified.
 
-        //    GetSecretValueResponse response = null;
+            GetSecretValueResponse response = null;
 
-        //    // In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
-        //    // See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
-        //    // We rethrow the exception by default.
+            // In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
+            // See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+            // We rethrow the exception by default.
 
-        //    try
-        //    {
-        //        response = client.GetSecretValueAsync(request).Result;
-        //    }
-        //    catch (DecryptionFailureException e)
-        //    {
-        //        // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
-        //        // Deal with the exception here, and/or rethrow at your discretion.
-        //        throw;
-        //    }
-        //    catch (InternalServiceErrorException e)
-        //    {
-        //        // An error occurred on the server side.
-        //        // Deal with the exception here, and/or rethrow at your discretion.
-        //        throw;
-        //    }
-        //    catch (InvalidParameterException e)
-        //    {
-        //        // You provided an invalid value for a parameter.
-        //        // Deal with the exception here, and/or rethrow at your discretion
-        //        throw;
-        //    }
-        //    catch (InvalidRequestException e)
-        //    {
-        //        // You provided a parameter value that is not valid for the current state of the resource.
-        //        // Deal with the exception here, and/or rethrow at your discretion.
-        //        throw;
-        //    }
-        //    catch (ResourceNotFoundException e)
-        //    {
-        //        // We can't find the resource that you asked for.
-        //        // Deal with the exception here, and/or rethrow at your discretion.
-        //        throw;
-        //    }
-        //    catch (System.AggregateException ae)
-        //    {
-        //        // More than one of the above exceptions were triggered.
-        //        // Deal with the exception here, and/or rethrow at your discretion.
-        //        throw;
-        //    }
+            try
+            {
+                response = client.GetSecretValueAsync(request).Result;
+            }
+            catch (DecryptionFailureException e)
+            {
+                // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
+                // Deal with the exception here, and/or rethrow at your discretion.
+                throw;
+            }
+            catch (InternalServiceErrorException e)
+            {
+                // An error occurred on the server side.
+                // Deal with the exception here, and/or rethrow at your discretion.
+                throw;
+            }
+            catch (InvalidParameterException e)
+            {
+                // You provided an invalid value for a parameter.
+                // Deal with the exception here, and/or rethrow at your discretion
+                throw;
+            }
+            catch (InvalidRequestException e)
+            {
+                // You provided a parameter value that is not valid for the current state of the resource.
+                // Deal with the exception here, and/or rethrow at your discretion.
+                throw;
+            }
+            catch (ResourceNotFoundException e)
+            {
+                // We can't find the resource that you asked for.
+                // Deal with the exception here, and/or rethrow at your discretion.
+                throw;
+            }
+            catch (System.AggregateException ae)
+            {
+                // More than one of the above exceptions were triggered.
+                // Deal with the exception here, and/or rethrow at your discretion.
+                throw;
+            }
 
-        //    // Decrypts secret using the associated KMS key.
-        //    // Depending on whether the secret is a string or binary, one of these fields will be populated.
-        //    if (response.SecretString != null)
-        //    {
-        //        secret = response.SecretString;
-        //    }
-        //    else
-        //    {
-        //        memoryStream = response.SecretBinary;
-        //        StreamReader reader = new StreamReader(memoryStream);
-        //        string decodedBinarySecret = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadToEnd()));
-        //    };
+            // Decrypts secret using the associated KMS key.
+            // Depending on whether the secret is a string or binary, one of these fields will be populated.
+            if (response.SecretString != null)
+            {
+                secret = response.SecretString;
+            }
+            else
+            {
+                memoryStream = response.SecretBinary;
+                StreamReader reader = new StreamReader(memoryStream);
+                string decodedBinarySecret = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(reader.ReadToEnd()));
+            };
 
-        //    return secret;
-        //}
+            return secret;
+        }
 
-        //string secret = GetSecret();
+        string secret = GetSecret();
 
 
 
@@ -130,7 +131,7 @@ namespace AuthLab2_RyanPinkney
                 // connect to database
                 services.AddDbContext<AccidentDbContext>(options =>
             {
-                options.UseMySql("server=aav5f2jqh834py.cfmwmqiatbw5.us-east-1.rds.amazonaws.com;port=3306;database=ebdb;user=pinkneyr;password=asdf1234"); // Change to RDSConnection for RDS
+                options.UseMySql(secret); // Change to RDSConnection for RDS
                 // Change to CrashDbConnection for localhost
             });
 
