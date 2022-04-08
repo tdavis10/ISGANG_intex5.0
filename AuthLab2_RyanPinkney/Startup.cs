@@ -129,8 +129,8 @@ namespace AuthLab2_RyanPinkney
                 // connect to database
                 services.AddDbContext<AccidentDbContext>(options =>
             {
-                options.UseMySql(DbSecret.GetRDSConnectionString("ebdb")); // Change to RDSConnection for RDS
-                // Change to CrashDbConnection for localhost
+                options.UseMySql(Environment.GetEnvironmentVariable("CONNECTION_STRING")); // Change to RDSConnection for RDS
+                // Change to CrashDbConnection for localhost DbSecret.GetRDSConnectionString("ebdb")
             });
 
             // initialize repository method
@@ -147,9 +147,9 @@ namespace AuthLab2_RyanPinkney
                 options.Password.RequiredUniqueChars = 1;
             });
 
-            services.AddSingleton<InferenceSession>(
-                  new InferenceSession("wwwroot/crash_final2.onnx")
-                );
+            //services.AddSingleton<InferenceSession>(
+            //      new InferenceSession("wwwroot/crash_final2.onnx")
+            //    );
 
 
 
@@ -212,7 +212,7 @@ namespace AuthLab2_RyanPinkney
             {
                 ctx.Response.Headers.Add("Content-Security-Policy",
                 //"default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';");
-                "default-src 'self' https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js http://www.w3.org/2000/svg https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/fonts/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/fonts/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d");
+                "default-src 'self' https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js http://www.w3.org/2000/svg https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/fonts/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/fonts/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d https://everydayefficienttransportation.isgang404.net/Home/js/scripts.js");
                 await next();
             });
 
