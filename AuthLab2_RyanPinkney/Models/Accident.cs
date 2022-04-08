@@ -10,36 +10,27 @@ namespace AuthLab2_RyanPinkney.Models
         [Required]
         public int crash_id { get; set; }
 
-        [Required]
+
         public string datetime { get; set; }
 
-        [Required]
         public string route { get; set; }
 
-        [Required]
         public decimal milepoint { get; set; }
 
-        [Required]
         public decimal lat_utm_y { get; set; }
 
-        [Required]
         public decimal long_utm_x { get; set; }
 
-        [Required]
         public string main_road_name { get; set; }
 
-        [Required]
         public string city { get; set; }
 
-        [Required]
         public string county_name { get; set; }
 
-        [Required]
         public int crash_severity_id { get; set; }
 
         // length specified to help limit them from entering something other than 'true' or 'false'
-
-        [Required]
+    
         public bool work_zone_related_True { get; set; }
 
 
