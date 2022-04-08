@@ -23,6 +23,11 @@ using Microsoft.AspNetCore.Http;
 //using Amazon.SecretsManager.Model;
 //using Amazon.Runtime;
 
+// Author: Ryan Pinkney, Tanner Davis, Kevin Gutierrez, Jacob Poor
+// This is our startup file for configuring the middleware and services
+
+
+
 namespace AuthLab2_RyanPinkney
 {
     public class Startup
@@ -107,7 +112,7 @@ namespace AuthLab2_RyanPinkney
 
 
 
-
+        // Start up configuration
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -118,6 +123,7 @@ namespace AuthLab2_RyanPinkney
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Identity db context identity
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -136,6 +142,7 @@ namespace AuthLab2_RyanPinkney
             // initialize repository method
             services.AddScoped<ICrashRepository, EFCrashRepository>();
 
+            // Password identity options for password requirements
             services.Configure<IdentityOptions>(options =>
             {
                 // Default Password settings.
@@ -169,6 +176,7 @@ namespace AuthLab2_RyanPinkney
             // Blazor Services
             services.AddServerSideBlazor();
 
+            // Service the HSTS
             services.AddHsts(options =>
             {
                 options.MaxAge = TimeSpan.FromDays(90);
@@ -203,11 +211,14 @@ namespace AuthLab2_RyanPinkney
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            // Use routing
             app.UseRouting();
 
+            // Use the authentication
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // Configure the Content Securit Policy
             app.Use(async (ctx, next) =>
             {
                 ctx.Response.Headers.Add("Content-Security-Policy",
@@ -226,14 +237,14 @@ namespace AuthLab2_RyanPinkney
                     pattern: "{cityNames}/{iPageNum}",
                     defaults: new { Controller = "Home", action = "Summary" });
 
-                // This one first
+                // This one second
                 endpoints.MapControllerRoute(
                     name: "Paging",
                     pattern: "Page{iPageNum}",
                     defaults: new { Controller = "Home", action = "Summary", iPageNum = 1 });
 
 
-                // This one first
+                // This one third
                 endpoints.MapControllerRoute(
                     name: "type",
                     pattern: "{cityNames}",
@@ -255,6 +266,7 @@ namespace AuthLab2_RyanPinkney
         }
     }
 
+    // Configure the rest of the security policy headers
     public sealed class SecurityHeadersMiddleware
     {
         private readonly RequestDelegate _next;

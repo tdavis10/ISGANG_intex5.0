@@ -1,6 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Data";
 }
+
+<!--
+// Author: Ryan Pinkney, Tanner Davis, Kevin Gutierrez, Jacob Poor
+This is the page that displays all the accident records
+
+-->
+
 @model AccidentViewModels
 <!-- Header-->
 <div class="py-5">
@@ -54,7 +61,8 @@
             </div>
         </div>
     </div>
-    <!--Buttons to go to the next page-->
+    <!-- Buttons to go to the next page -->
+    <!-- All these buttons connect to tag helpers that manage pagination -->
     <div class="text-center">
 
         @if (Model.PageInfo.iCurrentPage > 1)

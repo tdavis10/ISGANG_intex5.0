@@ -12,12 +12,16 @@
     [Parameter]
     public int Id { get; set; }
 
+    // Bring in the data
     public ICrashRepository repo => Service;
 
+    // Bring in the data
     public IEnumerable<Accident> AccidentData { get; set; }
 
+    // Variable for the filter crash id
     public int Filter { get; set; }
 
+    // Variable for the city filter
     public string City { get; set; }
 
     protected async override Task OnInitializedAsync()
@@ -25,6 +29,7 @@
         await UpdateData();
     }
 
+    // Update data to display on the screen
     public async Task UpdateData()
     {
         int p = 50;
@@ -35,6 +40,7 @@
             .ToListAsync();
     }
 
+    // Filter data by crash id 
     public async Task FilterData(int Filter)
     {
         AccidentData = await repo.Accidents
@@ -43,6 +49,7 @@
             .ToListAsync();
     }
 
+    // Filter data by city
     public async Task FilterData2(string City)
     {
         AccidentData = await repo.Accidents
@@ -51,8 +58,10 @@
             .ToListAsync();
     }
 
+    // Pagination variable
     public int skipCount { get; set; }
 
+    // Next page function
     public async Task nextPage(int skip, string City)
     {
         if (skipCount >= 50)
@@ -71,6 +80,7 @@
             .ToListAsync();
     }
 
+    // Previous page function
     public async Task previousPage(int skip)
     {
 
@@ -90,6 +100,7 @@
             .ToListAsync();
     }
 
+    // First page function
     public async Task firstPage(int skip)
     {
         skipCount = skip;
@@ -100,6 +111,7 @@
             .ToListAsync();
     }
 
+    // Last page function
     public async Task lastPage(int skip)
     {
         skipCount = skip;
@@ -110,10 +122,13 @@
             .ToListAsync();
     }
 
+    // Get the edit url
     public string GetEditUrl(long id) => $"/admin/crashes/edit/{id}";
 
+    // Get the next url
     public string GetNextUrl(int id) => $"/admin/crashes/{id}";
 
+    // Dekete the record function
     public async Task RemoveAccident(Accident a)
     {
         bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete the record?");
@@ -128,6 +143,14 @@
 
 
 }
+
+<!--
+// Author: Ryan Pinkney, Tanner Davis, Kevin Gutierrez, Jacob Poor
+This is the page that displays all the crashes for the admin
+
+-->
+
+<!-- This is the search form for the admin view -->
 <div class="row">
     <div class="col-4">
         <h5>Search for a record (Crash_ID):</h5>
@@ -143,16 +166,16 @@
         <br />
 
         @*<h5>Search by City:</h5>
-        <div class="form-group">
-            <input class="form-control" type="text"
-                   @bind="City"
-                   @bind:event="oninput">
+            <div class="form-group">
+                <input class="form-control" type="text"
+                       @bind="City"
+                       @bind:event="oninput">
 
-        </div>
-        <button class="btn btn-info btn-sm" @onclick="@(x => FilterData2(City))">Search</button>
-        <button class="btn btn-info btn-sm" @onclick="@(x => UpdateData())">Reset All</button>
-        <br />
-        <br />*@
+            </div>
+            <button class="btn btn-info btn-sm" @onclick="@(x => FilterData2(City))">Search</button>
+            <button class="btn btn-info btn-sm" @onclick="@(x => UpdateData())">Reset All</button>
+            <br />
+            <br />*@
 
         <!--Button to create a project-->
         <NavLink class="btn btn-primary" href="admin/crashes/create">Create New Report</NavLink>
@@ -160,6 +183,7 @@
         <br />
     </div>
 
+    <!-- Display the data -->
     <div class="col-8">
         <table class="table table-sm table-striped table-bordered">
 
@@ -206,6 +230,8 @@
         </table>
     </div>
 </div>
+
+<!-- Pagination buttons with custom functions -->
 <div class="row">
     <div class="col-6 text-right">
         <button class="btn btn-secondary btn-sm" @onclick="@(x => firstPage(0))">First</button>

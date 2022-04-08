@@ -2,6 +2,12 @@
     ViewData["Title"] = "Home";
 }
 
+<!--
+// Author: Ryan Pinkney, Tanner Davis, Kevin Gutierrez, Jacob Poor
+This is the index page
+
+-->
+
 <script>// The function below will start the confirmation dialog
     window.onload = function () {
 
@@ -13,7 +19,7 @@
 
     };</script>
 
-
+<!-- Scripts for the cookies pop up-->
 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
 <script>window.cookieconsent.initialise({
         "palette": {
@@ -40,17 +46,25 @@
         <div class="row gx-5 align-items-center justify-content-center">
             <div class="col-lg-8 col-xl-7 col-xxl-6">
                 <div class="my-5 text-center text-xl-start">
+
+                    <!-- Title -->
                     <h1 class="display-5 fw-bolder text-white mb-2">Your Everyday Efficient Transportation Services (YEETS)</h1>
+
+                    <!-- Page text -->
                     <p class="lead fw-normal text-white-50 mb-4">
                         With the even increasing rate of fatal car accident rates in Utah, YEETS is at the
                         forefront of making a change for all Utahns.
                     </p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Get Started</a>
+
+                        <!-- Navigation buttons -->
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" asp-controller="Home" asp-action="Summary">Get Started</a>
                         <a class="btn btn-outline-light btn-lg px-4" asp-controller="Home" asp-action="Summary">Learn More</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Crash image -->
             <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="~/img/crash.jpg" alt="..." /></div>
         </div>
     </div>
@@ -65,8 +79,10 @@
                     <div class="col mb-5 h-100">
                         <div class="feature rounded-3 mb-3"><img src="~/img/Medkit.png" /></div>
                         <h2 class="h5">Fatalities</h2>
-                        <p class="mb-0">In 2021, 320 individuals lost their lives in traffic-related incidents, the highest
-                         count since 2002. These people were friends, mothers, fathers, and children.</p>
+                        <p class="mb-0">
+                            In 2021, 320 individuals lost their lives in traffic-related incidents, the highest
+                            count since 2002. These people were friends, mothers, fathers, and children.
+                        </p>
                     </div>
                     <div class="col mb-5 h-100">
                         <div class="feature rounded-3 mb-3"><img src="~/img/Car.png" /></div>
@@ -94,6 +110,8 @@
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-10 col-xl-7">
                 <div class="text-center">
+
+                    <!-- Quote from the director of UDOT-->
                     <div class="fs-4 mb-4 fst-italic">
                         "Five years from now, we'd find our system very much in a point of failure. We would not
                         be able to carry the amount of people we need to carry."
@@ -115,6 +133,7 @@
 <section class="py-5">
     <div class="container px-5 my-5">
         <!-- Team members section-->
+        <!-- Includes captions and photos of everyone on the team -->
         <section class="py-5 bg-light">
             <div class="container px-5 my-5">
                 <div class="text-center">

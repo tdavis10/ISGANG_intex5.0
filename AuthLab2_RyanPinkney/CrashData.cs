@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Author: Ryan Pinkney, Tanner Davis, Kevin Gutierrez, Jacob Poor
+// This is our startup file for configuring the middleware and services
+
+using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.ML.OnnxRuntime.Tensors;
 
@@ -6,6 +9,8 @@ namespace AuthLab2_RyanPinkney
 {
     public class CrashData
     {
+        // All the required attribute that are the inputs into our model
+
         [Required]
         public float city_OUTSIDE_CITY_LIMITS { get; set; }
         [Required]
@@ -33,6 +38,9 @@ namespace AuthLab2_RyanPinkney
         [Required]
         public float main_road_name_Other { get; set; }
 
+
+        // Tensor function
+        // Code used for the model implementation
         public Tensor<float> AsTensor()
         {
             float[] data = new float[]

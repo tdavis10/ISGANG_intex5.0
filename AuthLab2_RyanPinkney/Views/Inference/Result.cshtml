@@ -6,8 +6,11 @@
 
 
 @model Prediction
+<!--
+// Author: Ryan Pinkney, Tanner Davis, Kevin Gutierrez, Jacob Poor
+    This is the page to display the model result
 
-
+-->
 <section>
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">
@@ -15,19 +18,25 @@
                 <div class="text-center mb-5">
                     <br />
                     <div class="pb-5">
+
+                        <!-- Display the title and the photo -->
                         <h1 class="fw-bolder">Crash Analyzer</h1>
                         <img src="~/img/CarCrashInfo.png" width="1200" />
                     </div>
+
+                    <!-- Sub title -->
                     <h2 class="fw-bolder">View the output of the Crash Analyzer:</h2>
                 </div>
             </div>
         </div>
-     </div>
+    </div>
 </section>
 <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
-
+        <!-- Print out the model results-->
+        <!-- Format the table to display the result -->
+        <!-- The result messages dynamically change -->
         @if (Model.PredictedValue == "1")
         {
             <table class="table table-sm table-striped table-bordered">
@@ -51,6 +60,8 @@
             </table>
 
         }
+        <!-- Print out the model results-->
+        <!-- Format the table to display the result -->
         @if (Model.PredictedValue == "2")
         {
 
@@ -74,6 +85,8 @@
                 </tr>
             </table>
         }
+        <!-- Print out the model results-->
+        <!-- Format the table to display the result -->
         @if (Model.PredictedValue == "3")
         {
             <table class="table table-sm table-striped table-bordered">
@@ -98,6 +111,8 @@
                 </tr>
             </table>
         }
+        <!-- Print out the model results-->
+        <!-- Format the table to display the result -->
         @if (Model.PredictedValue == "4")
         {
             <table class="table table-sm table-striped table-bordered">
@@ -121,6 +136,8 @@
                 </tr>
             </table>
         }
+        <!-- Print out the model results-->
+        <!-- Format the table to display the result -->
         @if (Model.PredictedValue == "5")
         {
             <table class="table table-sm table-striped table-bordered">
