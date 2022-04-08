@@ -24,7 +24,8 @@
         "RDS_PASSWORD": "asdf1234",
         "RDS_PORT": "3306",
         "RDS_SERVER": "aav5f2jqh834py.cfmwmqiatbw5.us-east-1.rds.amazonaws.com",
-        "RDS_USER": "pinkneyr"
+        "RDS_USER": "pinkneyr",
+        "CONNECTIONSTRING": "server=aav5f2jqh834py.cfmwmqiatbw5.us-east-1.rds.amazonaws.com;port=3306;database=ebdb;user=pinkneyr;password=asdf1234"
       }
     }
   }

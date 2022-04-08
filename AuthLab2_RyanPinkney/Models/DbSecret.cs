@@ -10,7 +10,8 @@ namespace AuthLab2_RyanPinkney.Models
             string port = Environment.GetEnvironmentVariable("RDS_PORT");
             string user = Environment.GetEnvironmentVariable("RDS_USER");
             string password = Environment.GetEnvironmentVariable("RDS_PASSWORD");
-            return "server=" + server + ";port=" + port + ";database=" + dbname + ";user=" + user + ";password=" + password;
+            string thing = Environment.GetEnvironmentVariable("CONNECTIONSTRING");
+            return thing;
         }
     }
 
