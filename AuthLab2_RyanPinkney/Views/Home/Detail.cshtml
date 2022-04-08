@@ -5,7 +5,11 @@
     ViewData["Title"] = "Details";
 }
 
+<!--
+// Author: Ryan Pinkney, Tanner Davis, Kevin Gutierrez, Jacob Poor
+This is the page to display details about the accident
 
+-->
 <!--Link the model for this page-->
 @model Accident
 <!-- Page Title-->
@@ -39,7 +43,7 @@
 
     </div>
     <div class="col">
-
+        <!-- displays all details related to an incident when 'details' button is clicked on a record -->
         <div class="text-center">
             <p>Motorcycle Involved: @ViewBag.Single.motorcycle_involved_True</p>
             <p>Improper Restraint: @ViewBag.Single.improper_restraint_True</p>
