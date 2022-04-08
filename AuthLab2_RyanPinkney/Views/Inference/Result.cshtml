@@ -8,135 +8,142 @@
 @model Prediction
 
 
-<section class="py-5">
-    <div class="container px-5 my-5">
+<section>
+    <div class="container px-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-12">
                 <div class="text-center mb-5">
-                    <h1 class="fw-bolder">Crash Analyzer</h1>
-                    <img src="~/img/CarCrashInfo.png" width="1200" />
-                    <p class="lead fw-normal text-muted mb-0">View the output of the Crash Analyzer:</p>
+                    <br />
+                    <div class="pb-5">
+                        <h1 class="fw-bolder">Crash Analyzer</h1>
+                        <img src="~/img/CarCrashInfo.png" width="1200" />
+                    </div>
+                    <h2 class="fw-bolder">View the output of the Crash Analyzer:</h2>
                 </div>
             </div>
         </div>
      </div>
 </section>
-        <div class="col-8">
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
 
-            @if (Model.PredictedValue == "1")
-            {
-                <table class="table table-sm table-striped table-bordered">
-                    <tr>
-                        <td class="text-center font-weight-bold">Crash Severity:</td>
-                        <td>@Model.PredictedValue</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center font-weight-bold">Outcome:</td>
-                        <td>No Injury</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center font-weight-bold">Recommendations:</td>
-                        <td>
-                            <ul>
-                                <li>Keep Monitoring data for any alarming changes</li>
-                                <li>Continue to regulate speed limits and intersection design</li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
+        @if (Model.PredictedValue == "1")
+        {
+            <table class="table table-sm table-striped table-bordered">
+                <tr>
+                    <td class="text-center font-weight-bold">Crash Severity:</td>
+                    <td>@Model.PredictedValue</td>
+                </tr>
+                <tr>
+                    <td class="text-center font-weight-bold">Outcome:</td>
+                    <td>No Injury</td>
+                </tr>
+                <tr>
+                    <td class="text-center font-weight-bold">Recommendations:</td>
+                    <td>
+                        <ul>
+                            <li>Keep Monitoring data for any alarming changes</li>
+                            <li>Continue to regulate speed limits and intersection design</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
 
-            }
-            @if (Model.PredictedValue == "2")
-            {
+        }
+        @if (Model.PredictedValue == "2")
+        {
 
-                <table class="table table-sm table-striped table-bordered">
-                    <tr>
-                        <td class="text-center font-weight-bold">Crash Severity: </td>
-                        <td>@Model.PredictedValue</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center font-weight-bold">Outcome: </td>
-                        <td>Possible Injury</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center font-weight-bold">Recommendations:</td>
-                        <td>
-                            <ul>
-                                <li>Consider implementing a flashing speed limit sign</li>
-                                <li>Reevalute traffic laws and speed limits</li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-            }
-            @if (Model.PredictedValue == "3")
-            {
-                <table class="table table-sm table-striped table-bordered">
-                    <tr>
-                        <td class="text-center font-weight-bold">Crash Severity: </td>
-                        <td>@Model.PredictedValue</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center font-weight-bold">Outcome: </td>
-                        <td>Suspected Minor Injury</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center font-weight-bold">Recommendations:</td>
-                        <td>
-                            <ul>
-                                <li>Add stop signs to smaller local roads</li>
-                                <li>Survey roads for dimly lit areas</li>
-                                <li>Repave old roads with potholes and cracks</li>
-                                <li>Repaint traffic lines with reflective paint</li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-            }
-            @if (Model.PredictedValue == "4")
-            {
-                <table class="table table-sm table-striped table-bordered">
-                    <tr>
-                        <td class="text-center font-weight-bold">Crash Severity: </td>
-                        <td>@Model.PredictedValue</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center font-weight-bold">Outcome: </td>
-                        <td>Suspected Serious Injury</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center font-weight-bold">Recommendations:</td>
-                        <td>
-                            <ul>
-                                <li>Evaluate and redesign left turn lanes</li>
-                                <li>Talk to law enforcement to enforce distracted driving laws</li>
-                                <li>Build roundabouts in new developments</li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-            }
-            @if (Model.PredictedValue == "5")
-            {
-                <table class="table table-sm table-striped table-bordered">
-                    <tr>
-                        <td class="text-center font-weight-bold">Crash Severity: </td>
-                        <td>@Model.PredictedValue</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center font-weight-bold">Outcome: </td>
-                        <td>Fatal</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center font-weight-bold">Recommendations:</td>
-                        <td>
-                            <ul>
-                                <li>Reduce speed limits in area</li>
-                                <li>Impose heavy fines against distracted/intoxicated drivers</li>
-                                <li>Analyze accident and factors that played in to fatal outcome</li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-            }
-        </div>
+            <table class="table table-sm table-striped table-bordered">
+                <tr>
+                    <td class="text-center font-weight-bold">Crash Severity: </td>
+                    <td>@Model.PredictedValue</td>
+                </tr>
+                <tr>
+                    <td class="text-center font-weight-bold">Outcome: </td>
+                    <td>Possible Injury</td>
+                </tr>
+                <tr>
+                    <td class="text-center font-weight-bold">Recommendations:</td>
+                    <td>
+                        <ul>
+                            <li>Consider implementing a flashing speed limit sign</li>
+                            <li>Reevalute traffic laws and speed limits</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        }
+        @if (Model.PredictedValue == "3")
+        {
+            <table class="table table-sm table-striped table-bordered">
+                <tr>
+                    <td class="text-center font-weight-bold">Crash Severity: </td>
+                    <td>@Model.PredictedValue</td>
+                </tr>
+                <tr>
+                    <td class="text-center font-weight-bold">Outcome: </td>
+                    <td>Suspected Minor Injury</td>
+                </tr>
+                <tr>
+                    <td class="text-center font-weight-bold">Recommendations:</td>
+                    <td>
+                        <ul>
+                            <li>Add stop signs to smaller local roads</li>
+                            <li>Survey roads for dimly lit areas</li>
+                            <li>Repave old roads with potholes and cracks</li>
+                            <li>Repaint traffic lines with reflective paint</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        }
+        @if (Model.PredictedValue == "4")
+        {
+            <table class="table table-sm table-striped table-bordered">
+                <tr>
+                    <td class="text-center font-weight-bold">Crash Severity: </td>
+                    <td>@Model.PredictedValue</td>
+                </tr>
+                <tr>
+                    <td class="text-center font-weight-bold">Outcome: </td>
+                    <td>Suspected Serious Injury</td>
+                </tr>
+                <tr>
+                    <td class="text-center font-weight-bold">Recommendations:</td>
+                    <td>
+                        <ul>
+                            <li>Evaluate and redesign left turn lanes</li>
+                            <li>Talk to law enforcement to enforce distracted driving laws</li>
+                            <li>Build roundabouts in new developments</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        }
+        @if (Model.PredictedValue == "5")
+        {
+            <table class="table table-sm table-striped table-bordered">
+                <tr>
+                    <td class="text-center font-weight-bold">Crash Severity: </td>
+                    <td>@Model.PredictedValue</td>
+                </tr>
+                <tr>
+                    <td class="text-center font-weight-bold">Outcome: </td>
+                    <td>Fatal</td>
+                </tr>
+                <tr>
+                    <td class="text-center font-weight-bold">Recommendations:</td>
+                    <td>
+                        <ul>
+                            <li>Reduce speed limits in area</li>
+                            <li>Impose heavy fines against distracted/intoxicated drivers</li>
+                            <li>Analyze accident and factors that played in to fatal outcome</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+    <div class="col-3"></div>
+</div>
