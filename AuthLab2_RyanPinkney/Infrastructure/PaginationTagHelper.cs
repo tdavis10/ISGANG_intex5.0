@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-
+// Authors Jacob Poor, Ryan Pinkney, Kevin Gutierrez, Tanner Davis
 namespace AuthLab2_RyanPinkney.Infrastructure
 {
 

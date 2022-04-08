@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
-
+// Authors Jacob Poor, Ryan Pinkney, Kevin Gutierrez, Tanner Davis
 namespace AuthLab2_RyanPinkney.Infrastructure
 {
     public static class UrlExtensions

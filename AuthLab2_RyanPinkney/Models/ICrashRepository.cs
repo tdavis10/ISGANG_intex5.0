@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-
+// Authors Jacob Poor, Ryan Pinkney, Kevin Gutierrez, Tanner Davis
 namespace AuthLab2_RyanPinkney.Models
 {
     public interface ICrashRepository

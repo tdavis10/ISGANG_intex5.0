@@ -1,4 +1,4 @@
-﻿// Author IS GANG
+﻿// Authors Jacob Poor, Ryan Pinkney, Kevin Gutierrez, Tanner Davis
 // This is our City View Component
 
 using System;

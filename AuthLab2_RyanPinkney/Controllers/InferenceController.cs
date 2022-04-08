@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
-
+// Authors Jacob Poor, Ryan Pinkney, Kevin Gutierrez, Tanner Davis
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AuthLab2_RyanPinkney.Controllers
 {
     public class InferenceController : Controller
     {
+        // creates an instance of the Inference Session
         private InferenceSession _session;
 
         public InferenceController(InferenceSession session)
@@ -19,7 +20,7 @@ namespace AuthLab2_RyanPinkney.Controllers
             _session = session;
         }
 
-
+        // calls the action and page to score the model
         [HttpPost]
         public ActionResult Score(CrashData data)
         {

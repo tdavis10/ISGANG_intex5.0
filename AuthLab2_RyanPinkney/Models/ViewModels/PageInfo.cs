@@ -1,4 +1,5 @@
 ﻿using System;
+// Authors Jacob Poor, Ryan Pinkney, Kevin Gutierrez, Tanner Davis
 namespace AuthLab2_RyanPinkney.Models.ViewModels
 {
     public class PageInfo
