@@ -154,9 +154,10 @@ namespace AuthLab2_RyanPinkney
                 options.Password.RequiredUniqueChars = 1;
             });
 
-            //services.AddSingleton<InferenceSession>(
-            //      new InferenceSession("wwwroot/crash_final2.onnx")
-            //    );
+            // Configure the service for the Onnx file
+            services.AddSingleton<InferenceSession>(
+                  new InferenceSession("wwwroot/crash_final2.onnx")
+                );
 
 
 
