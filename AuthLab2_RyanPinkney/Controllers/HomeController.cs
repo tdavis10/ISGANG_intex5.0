@@ -10,11 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AuthLab2_RyanPinkney.Models;
 using AuthLab2_RyanPinkney.Models.ViewModels;
-//using System.IO;
-//using Amazon.SecretsManager.Model;
-//using Amazon.SecretsManager;
-//using Amazon;
-//using Amazon.Runtime;
+
 
 namespace AuthLab2_RyanPinkney.Controllers
 {
